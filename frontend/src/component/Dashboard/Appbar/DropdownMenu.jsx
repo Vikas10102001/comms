@@ -6,18 +6,11 @@ import { MoreVert } from "@mui/icons-material";
 import { logout } from "../../shared/utils/auth";
 import { connect } from "react-redux";
 import { getActions } from "../../../store/actions/roomAction";
-import { getLocalStream } from "../../../realtimeCommunication/webRTCHandler";
-import store from "../../../store/store";
 
-function PositionedMenu({
-  setAudioOnly,
-  audioOnly,
-  hasUserJoined,
-  localStream,
-}) {
+function PositionedMenu({ setAudioOnly, audioOnly, hasUserJoined }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  let unsubscribe;
+  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -26,18 +19,8 @@ function PositionedMenu({
   };
   const handleAudioOnly = () => {
     setAudioOnly(!audioOnly);
-
-    unsubscribe = store.subscribe(() => {
-      const latestAudioOnly = store.getState().room.audioOnly;
-
-      if (hasUserJoined) {
-        getLocalStream(latestAudioOnly, callBack);
-      }
-    });
   };
-  const callBack = () => {
-    unsubscribe();
-  };
+
   return (
     <div>
       <IconButton onClick={handleClick} style={{ color: "white" }}>
@@ -59,9 +42,11 @@ function PositionedMenu({
         }}
       >
         <MenuItem onClick={logout}>Logout</MenuItem>
-        <MenuItem onClick={handleAudioOnly}>
-          {audioOnly ? "Audio only enabled" : "Audio only disabled"}
-        </MenuItem>
+        {!hasUserJoined && (
+          <MenuItem onClick={handleAudioOnly}>
+            {audioOnly ? "Audio only enabled" : "Audio only disabled"}
+          </MenuItem>
+        )}
       </Menu>
     </div>
   );
