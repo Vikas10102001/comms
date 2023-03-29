@@ -12,26 +12,25 @@ const updateChats = async (conversationId, specificSocket) => {
       select: " _id username",
     },
   });
-
   if (conversation) {
     const io = getServerInstance();
     if (specificSocket) {
       io.to(specificSocket).emit("direct-chat-history", {
         messages: conversation.messages,
-        participants: conversation.participants,
+        conversationId: conversation._id,
       });
-    }
+    } else {
+      conversation.participants.forEach((user) => {
+        const activeConnections = getActiveConnections(user.toString());
 
-    conversation.participants.forEach((user) => {
-      const activeConnections = getActiveConnections(user.toString());
-
-      activeConnections.forEach((socketId) => {
-        io.to(socketId).emit("direct-chat-history", {
-          messages: conversation.messages,
-          participants: conversation.participants,
+        activeConnections.forEach((socketId) => {
+          io.to(socketId).emit("direct-chat-history", {
+            messages: conversation.messages,
+            conversationId: conversation._id,
+          });
         });
       });
-    });
+    }
   }
 };
 

@@ -14,6 +14,11 @@ const conversationSchema = Mongoose.Schema({
       ref: "Message",
     },
   ],
+  type: {
+    type: String,
+    enum: ["DIRECT", "GROUP"],
+    required: [true, "Please provide conversation type"],
+  },
 });
 
 const Conversation = Mongoose.model("Conversation", conversationSchema);

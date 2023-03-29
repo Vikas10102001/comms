@@ -1,14 +1,30 @@
 import React from "react";
+import { chatTypes, getActions } from "../../../../store/actions/chatAction";
+import store from "../../../../store/store";
+import { setCurrentConversation } from "../../../../store/actions/chatAction";
 import { Typography, Button, Avatar } from "@mui/material";
-import OnlineIndicator from "./OnlineIndicator";
-import { getActions, chatTypes } from "../../../../store/actions/chatAction";
 import { connect } from "react-redux";
-
-function FriendsListItem({ username, isOnline, id, setChosenChatDetails }) {
-  const avatar = username[0] + username[1] + username[2];
-
+function GroupsListItem({
+  name,
+  id,
+  admin,
+  setChosenChatDetails,
+  date,
+  conversation,
+}) {
+  const avatar = name[0] + name[1] + name[2];
   const handleChooseActiveConversation = () => {
-    setChosenChatDetails({ id: id, username: username }, chatTypes.DIRECT);
+    store.dispatch(setCurrentConversation(conversation._id));
+    setChosenChatDetails(
+      {
+        groupId: id,
+        username: name,
+        admin: admin,
+        date: date,
+        members: conversation.participants,
+      },
+      chatTypes.GROUP
+    );
   };
   return (
     <Button
@@ -40,9 +56,8 @@ function FriendsListItem({ username, isOnline, id, setChosenChatDetails }) {
         sx={{ marginLeft: "7px", fontWeight: 700, color: "#8E9297" }}
         variant="subtitle1"
       >
-        {username}
+        {name}
       </Typography>
-      {isOnline && <OnlineIndicator />}
     </Button>
   );
 }
@@ -52,5 +67,4 @@ const mapActionsToProps = (dispatch) => {
     ...getActions(dispatch),
   };
 };
-
-export default connect(null, mapActionsToProps)(FriendsListItem);
+export default connect(null, mapActionsToProps)(GroupsListItem);

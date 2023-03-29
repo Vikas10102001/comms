@@ -21,6 +21,7 @@ const AvatarContainer = styled("div")({
 });
 
 const MessageContent = styled("div")({
+  fontSize:14,
   color: "#DCDDDE",
 });
 const MessageContainer = styled("div")({
@@ -34,7 +35,7 @@ export default function Message({ message, sameDay, sameAuthor }) {
   if (sameDay && sameAuthor) {
     return (
       <SameAuthorTextContainer>
-        <span style={{ marginLeft: "70px" }}>{message.content}</span>
+        <span style={{ marginLeft: "70px",fontSize:14 }}>{message.content}</span>
       </SameAuthorTextContainer>
     );
   }

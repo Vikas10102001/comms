@@ -2,6 +2,7 @@ const socketAuth = require("./controller/socketAuthController");
 const { setServerInstance, getOnlineUsers } = require("./serverStore");
 const {
   directChatHistoryHandler,
+  groupChatHistoryHandler,
 } = require("./socket handlers/directChatHistoryHandler");
 const directMessageHandler = require("./socket handlers/directMessageHandler");
 const { disconnectHandler } = require("./socket handlers/disconnectHandler");
@@ -13,6 +14,9 @@ const leaveRoomHandler = require("./socket handlers/roomLeaveHandler");
 const roomCreateHandler = require("./socket handlers/roomCreateHandler");
 const roomInitConnectionHandler = require("./socket handlers/roomInitConnectionHandler");
 const roomSignalDataHandler = require("./socket handlers/roomSignalDataHandler");
+const groupCreateHandler = require("./socket handlers/groupCreateHandler");
+const groupMessageHandler = require("./socket handlers/groupMessageHandler");
+const sendCurrentConversation = require("./socket handlers/sendCurrentConversation");
 const registerSocketServer = (server) => {
   const io = require("socket.io")(server, {
     cors: {
@@ -39,6 +43,12 @@ const registerSocketServer = (server) => {
     socket.on("direct-chat-history", (data) => {
       directChatHistoryHandler(socket, data);
     });
+    socket.on("group-chat-history", (data) => {
+      groupChatHistoryHandler(socket, data);
+    });
+    socket.on("current-conversation", (data) => {
+      sendCurrentConversation(socket, data);
+    });
     socket.on("create-room", () => {
       roomCreateHandler(socket);
     });
@@ -54,6 +64,13 @@ const registerSocketServer = (server) => {
 
     socket.on("con-signal", (data) => {
       roomSignalDataHandler(socket, data);
+    });
+
+    socket.on("create-group", (data) => {
+      groupCreateHandler(socket, data);
+    });
+    socket.on("group-message", (data) => {
+      groupMessageHandler(socket, data);
     });
     socket.on("disconnect", () => {
       disconnectHandler(socket);

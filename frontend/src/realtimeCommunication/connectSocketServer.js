@@ -13,6 +13,9 @@ import {
   handleSignalingData,
   prepareNewPeerConnection,
 } from "./webRTCHandler";
+import { setGroups } from "../store/actions/groupAction";
+import { setCurrentConversation } from "../store/actions/chatAction";
+import { openAlert } from "../store/actions/alertAction";
 
 let socket = null;
 export const connectWithSocketServer = (userDetail) => {
@@ -42,6 +45,10 @@ export const connectWithSocketServer = (userDetail) => {
   socket.on("direct-chat-history", (data) => {
     updateChatHistory(data);
   });
+  socket.on("current-conversation", (data) => {
+    const { currentConversationId } = data;
+    store.dispatch(setCurrentConversation(currentConversationId));
+  });
   socket.on("room-create", (data) => {
     newRoomCreated(data);
   });
@@ -62,6 +69,21 @@ export const connectWithSocketServer = (userDetail) => {
   socket.on("con-signal", (data) => {
     handleSignalingData(data);
   });
+  socket.on("group-update", (data) => {
+    let severity = null;
+    let content = "";
+    if (store.getState().auth.userDetail.id === data.newGroup?.admin) {
+      severity = "success";
+      content = `'${data.newGroup.name}' group successfully created`;
+    } else {
+      content = `You were added to '${data.newGroup?.name}' group `;
+    }
+
+    if (data.newGroup) {
+      store.dispatch(openAlert(content, severity));
+    }
+    store.dispatch(setGroups(data.groupUpdate));
+  });
   socket.on("room-participant-left", (data) => {
     closeConnection(data);
   });
@@ -70,11 +92,18 @@ export const connectWithSocketServer = (userDetail) => {
 export const handleDirectMessage = (data) => {
   socket.emit("direct-message", data);
 };
-
+export const handleGroupMessage = (data) => {
+  socket.emit("group-message", data);
+};
 export const getDirectChatHistory = (data) => {
   socket.emit("direct-chat-history", data);
 };
-
+export const getCurrentConversation = (data) => {
+  socket.emit("current-conversation", data);
+};
+export const getGroupChatHistory = (data) => {
+  socket.emit("group-chat-history", data);
+};
 export const createNewRoom = () => {
   socket.emit("create-room");
 };
@@ -89,4 +118,8 @@ export const leaveRoom = (data) => {
 
 export const signalPeerData = (data) => {
   socket.emit("con-signal", data);
+};
+
+export const createGroup = (data) => {
+  socket.emit("create-group", data);
 };

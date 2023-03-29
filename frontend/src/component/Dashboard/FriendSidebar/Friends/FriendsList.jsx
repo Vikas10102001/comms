@@ -4,12 +4,12 @@ import FriendsListItem from "./FriendsListItem";
 import { connect } from "react-redux";
 
 const MainContainer = styled("div")({
-  flexGrow: 1,
   width: "100%",
 });
 function FriendsList({ friends, onlineUsers }) {
   return (
     <MainContainer>
+      
       {friends.map((f) => {
         return (
           <FriendsListItem

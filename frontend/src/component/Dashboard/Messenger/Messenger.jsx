@@ -11,11 +11,11 @@ const MainContainer = styled("div")({
   display: "flex",
 });
 
-function Messenger({ chosenChatDetails }) {
+function Messenger({ chosenChatDetails,chatType }) {
   return (
     <MainContainer>
       {chosenChatDetails ? (
-        <MessageContent chosenChatDetails={chosenChatDetails} />
+        <MessageContent chosenChatDetails={chosenChatDetails} chatType={chatType} />
       ) : (
         <WelcomeMessage />
       )}

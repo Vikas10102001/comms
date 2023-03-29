@@ -1,9 +1,9 @@
 import React from "react";
 import { styled } from "@mui/system";
-import MainPageButton from "./MainPageButton";
 import RoomButton from "./RoomButton";
 import ActiveRoomButton from "./ActiveRoomButton";
 import { connect } from "react-redux";
+import GroupDialog from "./GroupDialog";
 
 const MainContainer = styled("div")({
   width: "72px",
@@ -16,7 +16,7 @@ const MainContainer = styled("div")({
 function Sidebar({ activeRooms, hasUserJoined }) {
   return (
     <MainContainer>
-      <MainPageButton />
+      <GroupDialog />
       <RoomButton />
       {activeRooms.map((room) => {
         return (

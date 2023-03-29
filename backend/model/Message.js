@@ -6,15 +6,8 @@ const messageSchema = Mongoose.Schema({
     ref: "User",
     required: [true, "A message must have an author"],
   },
-  type: {
-    type: String,
-    enum: ["DIRECT", "GROUP"],
-    required: [true, "Please provide message type"],
-  },
-  date: {
-    type: Date,
-    required: [true, "Please provide date for message"],
-  },
+  
+  date: Date,
   content: {
     type: String,
     required: [true, "A message must have a content"],

@@ -6,11 +6,10 @@ const directMessageHandler = async (socket, data) => {
   const userId = socket.user.id;
   const { recieverId, content } = data;
 
-  console.log(userId, recieverId, content);
 
   const message = await Message.create({
     author: userId,
-    type: "DIRECT",
+   
     date: new Date(Date.now()),
     content: content,
   });
@@ -21,14 +20,14 @@ const directMessageHandler = async (socket, data) => {
   });
 
   if (!conversation) {
-    console.log(message._id);
     const newConversation = await Conversation.create({
       participants: [recieverId, userId],
-      messages: message._id,
+      messages: [message._id],
+      type: "DIRECT",
     });
-    updateChats(newConversation);
+    updateChats(newConversation._id);
   } else {
-    conversation.messages.push(message);
+    conversation.messages.push(message._id);
     await conversation.save();
     updateChats(conversation._id);
   }

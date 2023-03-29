@@ -9,8 +9,7 @@ const MainContainer = styled("div")({
   display: "flex",
   flexDirection: "column",
   marginTop: 10,
-  marginLeft: 20,
-  alignItems: "center",
+  marginLeft: 10,
   overflow: "auto",
 });
 

@@ -19,10 +19,15 @@ const checkDate = (date1, date2) => {
 
   return date1 === date2;
 };
-function Messages({ chosenChatDetails, messages }) {
+function Messages({ chosenChatDetails, messages, chatType }) {
   return (
     <MainContainer>
-      <MessageHeader username={chosenChatDetails?.username} />
+      <MessageHeader
+        username={chosenChatDetails?.username}
+        chatType={chatType}
+        admin={chosenChatDetails?.admin}
+        groupCreateDate={chosenChatDetails?.date}
+      />
       {messages.map((message, ind) => {
         let sameAuthor = false;
         let sameDay = false;
@@ -49,7 +54,7 @@ function Messages({ chosenChatDetails, messages }) {
   );
 }
 
-const mapStatesToProps = ({ chat }) => {
-  return chat;
+const mapStatesToProps = ({ chat, group }) => {
+  return { ...chat, ...group };
 };
 export default connect(mapStatesToProps)(Messages);

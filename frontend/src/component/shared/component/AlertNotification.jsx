@@ -3,7 +3,12 @@ import { Alert, Snackbar } from "@mui/material";
 import { connect } from "react-redux";
 import { getActions } from "../../../store/actions/alertAction";
 
-function AlertNotification({showAlertMessage,closeAlert,alertMessageContent}) {
+function AlertNotification({
+  showAlertMessage,
+  closeAlert,
+  alertMessageContent,
+  severity,
+}) {
   return (
     <Snackbar
       anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
@@ -11,7 +16,9 @@ function AlertNotification({showAlertMessage,closeAlert,alertMessageContent}) {
       onClose={closeAlert}
       autoHideDuration={6000}
     >
-      <Alert severity="info">{alertMessageContent}</Alert>
+      <Alert severity={severity ? severity : "info"}>
+        {alertMessageContent}
+      </Alert>
     </Snackbar>
   );
 }

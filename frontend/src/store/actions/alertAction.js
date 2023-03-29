@@ -14,10 +14,11 @@ export const getActions = (dispatch) => {
   };
 };
 
-export const openAlert = (content) => {
+export const openAlert = (content,severity) => {
   return {
     type: alertActions.OPEN_ALERT,
     content,
+    severity
   };
 };
 

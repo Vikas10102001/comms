@@ -32,4 +32,4 @@ const AuthBox =(props)=> {
   );
 }
 
-export default AuthBox
+// export default AuthBox

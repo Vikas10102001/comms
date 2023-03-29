@@ -27,7 +27,7 @@ const Input = styled("input")({
   padding: "0 5px",
 });
 export default function LabeledInput(props) {
-  const { value, setValue, label, type, placeholder } = props;
+  const { value, setValue, label, type, placeholder ,additionalStyles} = props;
   const valueChangeHandler=(e)=>{
     setValue(e.target.value)
   }
@@ -39,6 +39,7 @@ export default function LabeledInput(props) {
         placeholder={placeholder}
         value={value}
         onChange={valueChangeHandler}
+        style={additionalStyles}
       />
     </Wrapper>
   );

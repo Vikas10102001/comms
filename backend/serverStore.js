@@ -27,7 +27,9 @@ const getActiveConnections = (userId) => {
   });
   return activeConnections;
 };
-
+const getUserWithActiveConnection = (socket) => {
+  return connectedUser.get(socket).userId;
+};
 const getOnlineUsers = () => {
   const onlineUsers = [];
   connectedUser.forEach((value, key) => {
@@ -82,7 +84,7 @@ const leaveRoom = (participantSocketId, roomId) => {
   activeRooms = activeRooms.filter((room) => {
     return room.roomId != roomId;
   });
-  if (activeRoom ) {
+  if (activeRoom) {
     activeRoom.participants = activeRoom.participants.filter((participant) => {
       return participant.socketId != participantSocketId;
     });
@@ -94,6 +96,7 @@ module.exports = {
   addNewConnectedUser,
   removeDisconnectedUser,
   getActiveConnections,
+  getUserWithActiveConnection,
   setServerInstance,
   getServerInstance,
   getOnlineUsers,

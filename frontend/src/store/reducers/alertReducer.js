@@ -3,6 +3,7 @@ import alertActions from "../actions/alertAction";
 const initState = {
   showAlertMessage: false,
   alertMessageContent: null,
+  severity: null,
 };
 
 const reducer = (state = initState, action) => {
@@ -12,6 +13,7 @@ const reducer = (state = initState, action) => {
         ...state,
         showAlertMessage: true,
         alertMessageContent: action.content,
+        severity: action.severity,
       };
 
     case alertActions.CLOSE_ALERT:

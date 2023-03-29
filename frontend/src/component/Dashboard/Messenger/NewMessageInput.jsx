@@ -1,6 +1,10 @@
 import { React, useState } from "react";
 import { styled } from "@mui/system";
-import { handleDirectMessage } from "../../../realtimeCommunication/connectSocketServer";
+import {
+  getCurrentConversation,
+  handleDirectMessage,
+  handleGroupMessage,
+} from "../../../realtimeCommunication/connectSocketServer";
 
 const Wrapper = styled("div")({
   display: "flex",
@@ -23,14 +27,18 @@ const Input = styled("input")({
   padding: "0 5px",
 });
 
-export default function NewMessageInput({ username, id }) {
+export default function NewMessageInput({ username, id, groupId, chatType }) {
   const [message, setMessage] = useState("");
   const messageOnChangeHandler = (event) => {
     setMessage(event.target.value);
   };
   const messageKeyPressHandler = (event) => {
     if (event.code === "Enter") {
-      handleDirectMessage({ recieverId: id, content: message });
+      if (chatType === "DIRECT") {
+        getCurrentConversation({ recieverId: id });
+        handleDirectMessage({ recieverId: id, content: message });
+      } else if (chatType === "GROUP")
+        handleGroupMessage({ groupId: groupId, content: message });
       setMessage("");
     }
   };
@@ -38,7 +46,7 @@ export default function NewMessageInput({ username, id }) {
     <Wrapper>
       <Input
         type="text"
-        placeholder={`Write message to ${username}`}
+        placeholder={`Write message to '${username}'`}
         value={message}
         onChange={messageOnChangeHandler}
         onKeyDown={messageKeyPressHandler}
