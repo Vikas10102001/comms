@@ -31,13 +31,16 @@ function GroupsListItem({
       sx={{
         width: "100%",
         height: "42px",
-        marginTop: "10px",
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
         color: "black",
         position: "relative",
         textTransform: "none",
+        fontSize: "12px",
+        "@media (max-width:560px)": {
+          fontSize: "10px",
+        },
       }}
       onClick={handleChooseActiveConversation}
     >
@@ -45,9 +48,13 @@ function GroupsListItem({
         sx={{
           width: 32,
           height: 32,
-          fontSize: 12,
+          fontSize: "1em",
           bgcolor: "#5865f2",
           textTransform: "uppercase",
+          "@media (max-width:560px)": {
+            width: "28px",
+            height: "28px",
+          },
         }}
       >
         {avatar}

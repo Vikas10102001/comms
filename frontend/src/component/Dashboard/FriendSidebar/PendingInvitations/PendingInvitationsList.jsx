@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 const MainContainer = styled("div")({
   width: "100%",
-  height: "22%",
+  height: "calc((100vh - 40px) / 3 - 66px)",
   display: "flex",
   flexDirection: "column",
   marginTop: 10,
@@ -13,7 +13,7 @@ const MainContainer = styled("div")({
   overflow: "auto",
 });
 
-function PendingInvitationsList({pendingFriendsInvitation}) {
+function PendingInvitationsList({ pendingFriendsInvitation }) {
   return (
     <MainContainer>
       {pendingFriendsInvitation.map((el) => {
@@ -29,8 +29,8 @@ function PendingInvitationsList({pendingFriendsInvitation}) {
     </MainContainer>
   );
 }
-const mapStateToProps=({friend})=>{
-  return friend
-}
+const mapStateToProps = ({ friend }) => {
+  return friend;
+};
 
-export default connect(mapStateToProps)(PendingInvitationsList)
+export default connect(mapStateToProps)(PendingInvitationsList);

@@ -4,9 +4,10 @@ import RoomButton from "./RoomButton";
 import ActiveRoomButton from "./ActiveRoomButton";
 import { connect } from "react-redux";
 import GroupDialog from "./GroupDialog";
+import FriendSideBarToggleButton from "./FriendSideBarToggleButton";
 
 const MainContainer = styled("div")({
-  width: "72px",
+  width: "4vw",
   height: "100%",
   display: "flex",
   flexDirection: "column",
@@ -16,6 +17,7 @@ const MainContainer = styled("div")({
 function Sidebar({ activeRooms, hasUserJoined }) {
   return (
     <MainContainer>
+      <FriendSideBarToggleButton />
       <GroupDialog />
       <RoomButton />
       {activeRooms.map((room) => {

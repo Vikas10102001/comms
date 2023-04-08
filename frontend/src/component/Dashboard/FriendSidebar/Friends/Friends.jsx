@@ -4,8 +4,7 @@ import FriendTitle from "../FriendTitle";
 import { styled } from "@mui/system";
 
 const Wrapper = styled("div")({
-  overflowY: "auto",
-  overflowX: "none",
+  flex: 1,
 });
 export default function Friends() {
   const [isOpen, setIsOpen] = useState(true);

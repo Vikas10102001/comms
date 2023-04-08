@@ -48,7 +48,7 @@ function SimpleDialog(props) {
     const groupDetails = { name: groupName, members: groupMembers };
     createGroup(groupDetails);
     setGroupMembers([]);
-    setGroupName("")
+    setGroupName("");
     onClose();
   };
 
@@ -127,6 +127,10 @@ function GroupDialog({ friends }) {
           padding: 0,
           background: "#5865F2",
           marginTop: "10px",
+          "@media (max-width:560px)": {
+            width: "42px",
+            height: "42px",
+          },
         }}
         onClick={handleClickOpen}
       >

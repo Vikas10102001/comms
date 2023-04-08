@@ -11,6 +11,7 @@ export default function AddFriendButton() {
     width: "80%",
     height: "30px",
     background: "#3BA55D",
+    flex: 0,
   };
   const dialogOpenAddFriendHandler = () => {
     setDialogIsOpen(true);

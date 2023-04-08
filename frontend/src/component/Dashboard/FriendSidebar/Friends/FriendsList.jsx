@@ -4,7 +4,9 @@ import FriendsListItem from "./FriendsListItem";
 import { connect } from "react-redux";
 
 const MainContainer = styled("div")({
-  width: "100%",
+  overflowY: "auto",
+  overflowX: "hidden",
+  height: "calc((100vh - 40px) / 3 - 25px)",
 });
 function FriendsList({ friends, onlineUsers }) {
   return (

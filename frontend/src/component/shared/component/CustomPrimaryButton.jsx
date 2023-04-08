@@ -18,7 +18,10 @@ export default function CustomPrimaryButton({
         width: "100%",
         height: "40px",
         textTransform: "none",
-        cursor:'pointer'
+        cursor:'pointer',
+        "@media (max-width:560px)": {
+          fontSize: "12px",
+        },
       }}
       style={additionalStyles ? additionalStyles : {}}
       onClick={onClick}

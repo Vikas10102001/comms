@@ -5,8 +5,12 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardControlKeyIcon from "@mui/icons-material/KeyboardControlKey";
 const MainContainer = styled("div")({
   width: "100%",
+  fontSize: "14px",
+  "@media (max-width:560px)": {
+    fontSize: "12px",
+  },
 });
-export default function FriendTitle({ title, isOpen ,setIsOpen}) {
+export default function FriendTitle({ title, isOpen, setIsOpen }) {
   const handleFriendList = () => {
     setIsOpen(!isOpen);
   };
@@ -16,14 +20,14 @@ export default function FriendTitle({ title, isOpen ,setIsOpen}) {
         sx={{
           color: "#8E9297",
           textTransform: "uppercase",
-          fontSize: "14px",
+          fontSize: "1em",
           marginTop: "10px",
           marginLeft: "10px",
           marginRight: "10px",
           borderTop: "1px solid #474545",
           display: "flex",
           justifyContent: "space-between",
-          cursor:"pointer"
+          cursor: "pointer",
         }}
         onClick={handleFriendList}
       >

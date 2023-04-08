@@ -3,7 +3,9 @@ import { styled } from "@mui/system";
 import { connect } from "react-redux";
 import GroupsListItem from "./GroupsListItem";
 const MainContainer = styled("div")({
-  width: "100%",
+  overflowY: "auto",
+  overflowX: "hidden",
+  height: "calc((100vh - 40px) / 3 - 25px)"
   
 });
 function GroupsList({ groups }) {

@@ -5,7 +5,8 @@ import alertReducer from "./reducers/alertReducer";
 import friendReducer from "./reducers/friendsReducer";
 import chatReducer from "./reducers/chatReducer";
 import roomReducer from "./reducers/roomReducer";
-import groupReducer from "./reducers/groupReducer"
+import groupReducer from "./reducers/groupReducer";
+import toggleReducer from "./reducers/toggleReducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   friend: friendReducer,
   chat: chatReducer,
   room: roomReducer,
-  group:groupReducer
+  group: groupReducer,
+  toggle: toggleReducer,
 });
 const store = configureStore({
   reducer: rootReducer,

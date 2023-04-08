@@ -5,7 +5,7 @@ import { openRoomHandler } from "../../../realtimeCommunication/roomHandler";
 
 export default function MainPageButton() {
   const createNewRoomHandler = () => {
-    openRoomHandler()
+    openRoomHandler();
   };
   return (
     <Button
@@ -20,6 +20,10 @@ export default function MainPageButton() {
         padding: 0,
         backgroundColor: "#5865F2",
         marginTop: "10px",
+        "@media (max-width:560px)": {
+          width: "42px",
+          height: "42px",
+        },
       }}
     >
       <Add />

@@ -6,8 +6,7 @@ import GroupMembersModal from "./GroupMembersModal";
 import { connect } from "react-redux";
 
 const Wrapper = styled("div")({
-  overflowY: "auto",
-  overflowX: "none",
+  flex: 1,
 });
 
 function Groups({ groupMembersModalIsOpen }) {

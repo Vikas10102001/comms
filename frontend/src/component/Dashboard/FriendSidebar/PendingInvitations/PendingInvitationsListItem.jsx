@@ -8,8 +8,8 @@ function PendingInvitationsListItem({
   username,
   id,
   email,
-  acceptFriendInvitation ,
-  rejectFriendInvitation
+  acceptFriendInvitation,
+  rejectFriendInvitation,
 }) {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const avatar = username[0] + username[1] + username[2];
@@ -29,19 +29,26 @@ function PendingInvitationsListItem({
           sx={{
             width: "100%",
             height: "42px",
-            mardinTop: "10px",
             display: "flex",
             alignItem: "center",
             justifyContent: "center",
+            fontSize: "12px",
+            "@media (max-width:560px)": {
+              fontSize: "10px",
+            },
           }}
         >
           <Avatar
             sx={{
               width: 32,
               height: 32,
-              fontSize: 12,
+              fontSize: "1em",
               bgcolor: "#5865f2",
               textTransform: "uppercase",
+              "@media (max-width:560px)": {
+                width: "28px",
+                height: "28px",
+              },
             }}
           >
             {avatar}
@@ -49,7 +56,7 @@ function PendingInvitationsListItem({
           <Typography
             sx={{
               marginLeft: "7px",
-              marginTop:'7px',
+              marginTop: "7px",
               flexGrow: 1,
               fontWeight: 700,
               color: "#8e9297",
@@ -69,10 +76,10 @@ function PendingInvitationsListItem({
   );
 }
 
-const mapActionsToProps=(dispatch)=>{
+const mapActionsToProps = (dispatch) => {
   return {
-    ...getActions(dispatch)
-  }
-}
+    ...getActions(dispatch),
+  };
+};
 
-export default connect(null,mapActionsToProps)(PendingInvitationsListItem)
+export default connect(null, mapActionsToProps)(PendingInvitationsListItem);

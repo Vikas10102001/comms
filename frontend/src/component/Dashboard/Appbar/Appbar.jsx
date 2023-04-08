@@ -11,11 +11,12 @@ const MainContainer = styled("div")({
   height: "48px",
   borderBottom: "1px solid #474545",
   backgroundColor: "#36393F",
-  width: "calc(100% - 326px)",
+  width: "calc(100vw - 20vw)",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
   padding: "0 15px",
+  boxSizing: "border-box",
 });
 
 function Appbar({ chatType }) {

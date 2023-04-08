@@ -4,8 +4,7 @@ import PendingInvitationsList from "./PendingInvitationsList";
 import { styled } from "@mui/system";
 
 const Wrapper = styled("div")({
-  overflowX: "none",
-  flexGrow:1
+  flex: 1,
 });
 export default function Invitations() {
   const [isOpen, setIsOpen] = useState(true);
