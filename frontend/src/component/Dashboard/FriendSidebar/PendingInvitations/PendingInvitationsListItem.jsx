@@ -35,6 +35,7 @@ function PendingInvitationsListItem({
             fontSize: "12px",
             "@media (max-width:560px)": {
               fontSize: "10px",
+              marginTop: "0",
             },
           }}
         >

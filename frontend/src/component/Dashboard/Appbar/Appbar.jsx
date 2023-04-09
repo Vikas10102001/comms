@@ -14,7 +14,7 @@ const MainContainer = styled("div")({
   width: "calc(100vw - 20vw)",
   display: "flex",
   alignItems: "center",
-  justifyContent: "space-between",
+  justifyContent: "end",
   padding: "0 15px",
   boxSizing: "border-box",
   zIndex: 0,
@@ -22,7 +22,7 @@ const MainContainer = styled("div")({
     width: "calc(100vw - 35vw)",
   },
   "@media (max-width:660px)": {
-    width: "calc(100vw - 50px) ",
+    width: "calc(100vw - 50px)",
   },
 });
 
@@ -35,15 +35,15 @@ function Appbar({ chatType }) {
     width: "calc(100vw - 4vw)",
 
     "@media (max-width:1300px)": {
-      width: "calc(100vw - 10vw)",
+      width: "90vw",
     },
-    "@media (max-width:560px)": {
-      width: "calc(100vw - 10vw)",
+    "@media (max-width:660px)": {
+      width: "calc(100vw - 50px)",
     },
   };
   return (
     <MainContainer sx={!friendSideBarToggle ? friendSideBarCloseStyle : {}}>
-      <ChosenOptionLabel />
+      {!window.innerWidth===660&&<ChosenOptionLabel />}
       {chatType === "GROUP" && <GroupDetailsDropdown />}
       <DropdownMenu />
     </MainContainer>

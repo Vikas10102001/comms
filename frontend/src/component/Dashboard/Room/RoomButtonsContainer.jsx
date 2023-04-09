@@ -6,6 +6,7 @@ import ScreenShare from "./RoomButtons/ScreenShare";
 import CloseRoom from "./RoomButtons/CloseRoom";
 import { connect } from "react-redux";
 import { getActions } from "../../../store/actions/roomAction";
+import RoomResizeButton from "./RoomButtons/RoomResizeButton";
 
 const MainContainer = styled("div")({
   width: "100%",
@@ -18,14 +19,18 @@ const MainContainer = styled("div")({
   justifyContent: "center",
 });
 function RoomButtonsContainer(props) {
-  const { localStream,audioOnly } = props;
- 
+  const { localStream, audioOnly } = props;
+  const { handleResize, isRoomMinimized } = props;
   return (
     <MainContainer>
-      {!audioOnly&&<Camera localStream={localStream} />}
+      {!audioOnly && <Camera localStream={localStream} />}
       <Mic localStream={localStream} />
-      {!audioOnly&&<ScreenShare props={props} />}
+      {!audioOnly && <ScreenShare props={props} />}
       <CloseRoom />
+      <RoomResizeButton
+        handleResize={handleResize}
+        isRoomMinimized={isRoomMinimized}
+      />
     </MainContainer>
   );
 }

@@ -10,6 +10,10 @@ const MainContainer = styled("div")({
   marginTop: "48px",
   display: "flex",
   "@media (max-width:660px)": {
+    width: "calc(100vw - 50px)",
+    position: "absolute",
+    right: "0",
+    height: "calc(100vh - 48px)",
   },
 });
 
