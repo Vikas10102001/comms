@@ -41,13 +41,15 @@ export default function NewMessageInput({ username, id, groupId, chatType }) {
     setMessage("");
   };
   const messageKeyPressHandler = (event) => {
-    if (event.code === "Enter") {
-      if (chatType === "DIRECT") {
-        getCurrentConversation({ recieverId: id });
-        handleDirectMessage({ recieverId: id, content: message });
-      } else if (chatType === "GROUP")
-        handleGroupMessage({ groupId: groupId, content: message });
-      setMessage("");
+    if (!message.trim() === "") {
+      if (event.code === "Enter") {
+        if (chatType === "DIRECT") {
+          getCurrentConversation({ recieverId: id });
+          handleDirectMessage({ recieverId: id, content: message });
+        } else if (chatType === "GROUP")
+          handleGroupMessage({ groupId: groupId, content: message });
+        setMessage("");
+      }
     }
   };
   return (
