@@ -5,12 +5,12 @@ import {
   handleDirectMessage,
   handleGroupMessage,
 } from "../../../realtimeCommunication/connectSocketServer";
+import CustomPrimaryButton from "../../shared/component/CustomPrimaryButton";
 
 const Wrapper = styled("div")({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  flexDirection: "column",
   marginBottom: "10px",
 });
 
@@ -32,6 +32,14 @@ export default function NewMessageInput({ username, id, groupId, chatType }) {
   const messageOnChangeHandler = (event) => {
     setMessage(event.target.value);
   };
+  const handleSendMessageButton = () => {
+    if (chatType === "DIRECT") {
+      getCurrentConversation({ recieverId: id });
+      handleDirectMessage({ recieverId: id, content: message });
+    } else if (chatType === "GROUP")
+      handleGroupMessage({ groupId: groupId, content: message });
+    setMessage("");
+  };
   const messageKeyPressHandler = (event) => {
     if (event.code === "Enter") {
       if (chatType === "DIRECT") {
@@ -50,6 +58,12 @@ export default function NewMessageInput({ username, id, groupId, chatType }) {
         value={message}
         onChange={messageOnChangeHandler}
         onKeyDown={messageKeyPressHandler}
+      />
+      <CustomPrimaryButton
+        label="send"
+        onClick={handleSendMessageButton}
+        additionalStyles={{ width: "5vw" }}
+        disabled={message === ""}
       />
     </Wrapper>
   );
