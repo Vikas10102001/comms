@@ -14,7 +14,7 @@ const MainContainer = styled("div")({
   width: "calc(100vw - 20vw)",
   display: "flex",
   alignItems: "center",
-  justifyContent: "end",
+  justifyContent: "space-between",
   padding: "0 15px",
   boxSizing: "border-box",
   zIndex: 0,
@@ -23,6 +23,7 @@ const MainContainer = styled("div")({
   },
   "@media (max-width:660px)": {
     width: "calc(100vw - 50px)",
+    justifyContent: "end",
   },
 });
 
@@ -43,7 +44,7 @@ function Appbar({ chatType }) {
   };
   return (
     <MainContainer sx={!friendSideBarToggle ? friendSideBarCloseStyle : {}}>
-      {!window.innerWidth===660&&<ChosenOptionLabel />}
+      {!window.innerWidth < '660px' && <ChosenOptionLabel />}
       {chatType === "GROUP" && <GroupDetailsDropdown />}
       <DropdownMenu />
     </MainContainer>
