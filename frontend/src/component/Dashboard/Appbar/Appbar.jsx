@@ -3,7 +3,7 @@ import { styled } from "@mui/system";
 import DropdownMenu from "./DropdownMenu";
 import ChosenOptionLabel from "./ChosenOptionLabel";
 import GroupDetailsDropdown from "./GroupDetailsDropdown";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 const MainContainer = styled("div")({
   position: "absolute",
   top: 0,
@@ -17,11 +17,32 @@ const MainContainer = styled("div")({
   justifyContent: "space-between",
   padding: "0 15px",
   boxSizing: "border-box",
+  zIndex: 0,
+  "@media (max-width:1300px)": {
+    width: "calc(100vw - 35vw)",
+  },
+  "@media (max-width:660px)": {
+    width: "calc(100vw - 50px) ",
+  },
 });
 
 function Appbar({ chatType }) {
+  const friendSideBarToggle = useSelector((state) => {
+    return state.toggle.friendSideBarToggle;
+  });
+
+  const friendSideBarCloseStyle = {
+    width: "calc(100vw - 4vw)",
+
+    "@media (max-width:1300px)": {
+      width: "calc(100vw - 10vw)",
+    },
+    "@media (max-width:560px)": {
+      width: "calc(100vw - 10vw)",
+    },
+  };
   return (
-    <MainContainer>
+    <MainContainer sx={!friendSideBarToggle ? friendSideBarCloseStyle : {}}>
       <ChosenOptionLabel />
       {chatType === "GROUP" && <GroupDetailsDropdown />}
       <DropdownMenu />

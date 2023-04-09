@@ -127,9 +127,10 @@ function GroupDialog({ friends }) {
           padding: 0,
           background: "#5865F2",
           marginTop: "10px",
-          "@media (max-width:560px)": {
-            width: "42px",
-            height: "42px",
+          "@media (max-width:665px)": {
+            width: "32px",
+            height: "32px",
+            borderRadius: "12px",
           },
         }}
         onClick={handleClickOpen}

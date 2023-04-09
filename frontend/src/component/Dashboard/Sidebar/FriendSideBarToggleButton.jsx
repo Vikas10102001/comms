@@ -2,7 +2,7 @@ import { Close, Dehaze } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFriendSideBarToggle } from "../../../store/actions/toggleAction";
+import { setFriendSideBarToggle } from "../../../store/actions/toggleAciton";
 
 export default function FriendSideBarToggleButton() {
   const toggle = useSelector((state) => {
@@ -13,7 +13,10 @@ export default function FriendSideBarToggleButton() {
     dispatch(setFriendSideBarToggle(!toggle));
   };
   return (
-    <Button sx={{ marginTop: "10px" }} onClick={handleToggle}>
+    <Button
+      sx={{ marginTop: "10px"}}
+      onClick={handleToggle}
+    >
       {toggle ? <Close /> : <Dehaze />}
     </Button>
   );

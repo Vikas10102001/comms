@@ -8,8 +8,6 @@ const MainContainer = styled("div")({
   height: "calc((100vh - 40px) / 3 - 66px)",
   display: "flex",
   flexDirection: "column",
-  marginTop: 10,
-  marginLeft: 10,
   overflow: "auto",
 });
 

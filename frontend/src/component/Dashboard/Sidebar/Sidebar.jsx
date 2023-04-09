@@ -13,11 +13,17 @@ const MainContainer = styled("div")({
   flexDirection: "column",
   alignItems: "center",
   backgroundColor: "#202225",
+  "@media (max-width:1300px)":{
+    width:'10vw'
+  },
+  "@media (max-width:660px)":{
+    width:'50px'
+  }
 });
 function Sidebar({ activeRooms, hasUserJoined }) {
   return (
     <MainContainer>
-      <FriendSideBarToggleButton />
+      <FriendSideBarToggleButton/>
       <GroupDialog />
       <RoomButton />
       {activeRooms.map((room) => {

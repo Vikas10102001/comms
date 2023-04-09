@@ -9,13 +9,18 @@ const MainContainer = styled("div")({
   backgroundColor: "#36393F",
   marginTop: "48px",
   display: "flex",
+  "@media (max-width:660px)": {
+  },
 });
 
-function Messenger({ chosenChatDetails,chatType }) {
+function Messenger({ chosenChatDetails, chatType }) {
   return (
     <MainContainer>
       {chosenChatDetails ? (
-        <MessageContent chosenChatDetails={chosenChatDetails} chatType={chatType} />
+        <MessageContent
+          chosenChatDetails={chosenChatDetails}
+          chatType={chatType}
+        />
       ) : (
         <WelcomeMessage />
       )}

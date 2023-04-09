@@ -1,6 +1,6 @@
-import toggleActions from "../actions/toggleAction";
+import toggleActions from "../actions/toggleAciton";
 const initState = {
-  friendSideBarToggle: window.innerWidth < 913 ? true : false,
+  friendSideBarToggle: true,
 };
 
 const reducer = (state = initState, action) => {

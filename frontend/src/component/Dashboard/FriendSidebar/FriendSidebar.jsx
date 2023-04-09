@@ -12,6 +12,13 @@ const MainContainer = styled("div")({
   display: "flex",
   flexDirection: "column",
   backgroundColor: "#2F3136",
+  zIndex: 1,
+  "@media (max-width:1300px)": {
+    width: "25vw",
+  },
+  "@media (max-width:660px)": {
+    width: "300px",
+  },
 });
 export default function FriendSidebar() {
   const toggle = useSelector((state) => {
