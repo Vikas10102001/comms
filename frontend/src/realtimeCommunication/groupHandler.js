@@ -1,3 +1,11 @@
+import { openAlert } from "../store/actions/alertAction";
+import {
+  setChosenChatDetails,
+  setCurrentConversation,
+} from "../store/actions/chatAction";
+import { setGroups } from "../store/actions/groupAction";
+import store from "../store/store";
+
 export const groupUpdate = (data) => {
   console.log(data);
   let severity = null;
@@ -11,7 +19,8 @@ export const groupUpdate = (data) => {
     }
     store.dispatch(openAlert(content, severity));
   } else if (data.deletedGroup) {
-    console.log(data.deletedGroup);
+    store.dispatch(setChosenChatDetails(null));
+    store.dispatch(setCurrentConversation(null));
   }
   store.dispatch(setGroups(data.groupUpdate));
 };

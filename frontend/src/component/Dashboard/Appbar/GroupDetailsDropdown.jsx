@@ -4,6 +4,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { connect } from "react-redux";
 import getActions from "../../../store/actions/groupAction";
+import { deleteGroup } from "../../../realtimeCommunication/connectSocketServer";
 
 function GroupDetailsDropdown({
   setGroupMembersModalIsOpen,
@@ -24,6 +25,9 @@ function GroupDetailsDropdown({
     setAnchorEl(null);
   };
   const handleLeaveGroup = () => {};
+  const handleDeleteGroup = () => {
+    deleteGroup({ groupId: chosenChatDetails.groupId });
+  };
   return (
     <div>
       <Button
@@ -46,7 +50,7 @@ function GroupDetailsDropdown({
       >
         <MenuItem onClick={handleGroupMember}>Group members</MenuItem>
         {chosenChatDetails.admin._id === userDetail.id ? (
-          <MenuItem onClick={handleLeaveGroup}>Delete Group</MenuItem>
+          <MenuItem onClick={handleDeleteGroup}>Delete Group</MenuItem>
         ) : (
           <MenuItem onClick={handleLeaveGroup}>Leave Group</MenuItem>
         )}
@@ -55,8 +59,8 @@ function GroupDetailsDropdown({
   );
 }
 
-const mapStatesToProps = ({ chat ,auth}) => {
-  return {...chat,...auth};
+const mapStatesToProps = ({ chat, auth }) => {
+  return { ...chat, ...auth };
 };
 const mapActionsToProps = (dispatch) => {
   return {

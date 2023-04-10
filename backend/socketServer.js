@@ -17,6 +17,7 @@ const roomSignalDataHandler = require("./socket handlers/roomSignalDataHandler")
 const groupCreateHandler = require("./socket handlers/groupCreateHandler");
 const groupMessageHandler = require("./socket handlers/groupMessageHandler");
 const sendCurrentConversation = require("./socket handlers/sendCurrentConversation");
+const deleteGroupHandler = require("./socket handlers/groupDeleteHandler");
 const registerSocketServer = (server) => {
   const io = require("socket.io")(server, {
     cors: {
@@ -71,6 +72,9 @@ const registerSocketServer = (server) => {
     });
     socket.on("group-message", (data) => {
       groupMessageHandler(socket, data);
+    });
+    socket.on("delete-group", (data) => {
+      deleteGroupHandler(socket, data);
     });
     socket.on("disconnect", () => {
       disconnectHandler(socket);
