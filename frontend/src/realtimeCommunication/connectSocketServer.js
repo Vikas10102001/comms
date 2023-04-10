@@ -16,6 +16,7 @@ import {
 import { setGroups } from "../store/actions/groupAction";
 import { setCurrentConversation } from "../store/actions/chatAction";
 import { openAlert } from "../store/actions/alertAction";
+import { groupUpdate } from "./groupHandler";
 
 let socket = null;
 export const connectWithSocketServer = (userDetail) => {
@@ -70,19 +71,7 @@ export const connectWithSocketServer = (userDetail) => {
     handleSignalingData(data);
   });
   socket.on("group-update", (data) => {
-    let severity = null;
-    let content = "";
-    if (store.getState().auth.userDetail.id === data.newGroup?.admin) {
-      severity = "success";
-      content = `'${data.newGroup.name}' group successfully created`;
-    } else {
-      content = `You were added to '${data.newGroup?.name}' group `;
-    }
-
-    if (data.newGroup) {
-      store.dispatch(openAlert(content, severity));
-    }
-    store.dispatch(setGroups(data.groupUpdate));
+    groupUpdate(data);
   });
   socket.on("room-participant-left", (data) => {
     closeConnection(data);
@@ -122,4 +111,8 @@ export const signalPeerData = (data) => {
 
 export const createGroup = (data) => {
   socket.emit("create-group", data);
+};
+
+export const deleteGroup = (data) => {
+  socket.emit("delete-group", data);
 };
