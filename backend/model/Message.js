@@ -6,11 +6,16 @@ const messageSchema = Mongoose.Schema({
     ref: "User",
     required: [true, "A message must have an author"],
   },
-  
+
   date: Date,
   content: {
     type: String,
     required: [true, "A message must have a content"],
+  },
+  variant: {
+    type: String,
+    enum: ["CHAT", "USER_LEFT"],
+    default: "CHAT",
   },
 });
 
