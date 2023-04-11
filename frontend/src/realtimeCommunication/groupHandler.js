@@ -1,5 +1,6 @@
 import { openAlert } from "../store/actions/alertAction";
 import {
+  chatTypes,
   setChosenChatDetails,
   setCurrentConversation,
 } from "../store/actions/chatAction";
@@ -7,20 +8,43 @@ import { setGroups } from "../store/actions/groupAction";
 import store from "../store/store";
 
 export const groupUpdate = (data) => {
-  console.log(data);
+  const { newGroup, deletedGroup, groupUpdate } = data;
   let severity = null;
   let content = "";
-  if (data.newGroup) {
-    if (store.getState().auth.userDetail.id === data.newGroup.admin) {
+  let chosenChatDetails = null;
+  let currentConversationId = null;
+
+  if (newGroup) {
+    const newGroupPopulated = groupUpdate.find((group) => {
+      return newGroup._id === group._id;
+    });
+    if (store.getState().auth.userDetail.id === newGroupPopulated.admin) {
       severity = "success";
-      content = `'${data.newGroup.name}' group successfully created`;
+      content = `'${newGroupPopulated.name}' group successfully created`;
     } else {
-      content = `You were added to '${data.newGroup.name}' group `;
+      content = `You were added to '${newGroupPopulated.name}' group `;
     }
     store.dispatch(openAlert(content, severity));
-  } else if (data.deletedGroup) {
-    store.dispatch(setChosenChatDetails(null));
-    store.dispatch(setCurrentConversation(null));
+    chosenChatDetails = {
+      groupId: newGroupPopulated._id,
+      username: newGroupPopulated.name,
+      admin: newGroupPopulated.admin,
+      date: newGroupPopulated.date,
+      members: newGroupPopulated.conversation.participants,
+    };
+    currentConversationId = newGroupPopulated.conversation._id;
+    store.dispatch(setChosenChatDetails(chosenChatDetails, chatTypes.GROUP));
+    store.dispatch(setCurrentConversation(currentConversationId));
+  } else if (deletedGroup) {
+    if (store.getState().auth.userDetail.id === deletedGroup.admin) {
+      content = `'${deletedGroup.name}' group successfully deleted`;
+    } else {
+      content = `'${deletedGroup.name}' group deleted`;
+    }
+    store.dispatch(openAlert(content, severity));
+    store.dispatch(setChosenChatDetails(chosenChatDetails));
+    store.dispatch(setCurrentConversation(currentConversationId));
   }
-  store.dispatch(setGroups(data.groupUpdate));
+
+  store.dispatch(setGroups(groupUpdate));
 };
