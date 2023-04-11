@@ -10,20 +10,24 @@ const updateGroup = async (
   deletedGroup
 ) => {
   const io = getServerInstance();
-  console.log("deleted group", deletedGroup);
-  if (toSpecificSocket) {
-    const groupUpdate = await Group.find({ members: { $in: [userId] } })
-      .populate({
-        path: "admin",
+  const groups = await Group.find()
+    .populate({ path: "admin", select: "username email" })
+    .populate({
+      path: "conversation",
+      populate: {
+        path: "participants",
         select: "username email",
-      })
-      .populate({
-        path: "conversation",
-        populate: {
-          path: "participants",
-          select: "username email",
-        },
+      },
+    });
+
+  if (toSpecificSocket) {
+    let groupUpdate = [];
+    groups.forEach((group) => {
+      group.conversation.participants.forEach((participant) => {
+        if (participant._id.toString() === userId) groupUpdate.push(group);
       });
+    });
+
     io.to(toSpecificSocket).emit("group-update", {
       groupUpdate,
       newGroup,
@@ -32,16 +36,6 @@ const updateGroup = async (
   }
 
   if (toGroupMembers) {
-    console.log(toGroupMembers);
-    const groups = await Group.find()
-      .populate({ path: "admin", select: "username email" })
-      .populate({
-        path: "conversation",
-        populate: {
-          path: "participants",
-          select: "username email",
-        },
-      });
     toGroupMembers.forEach((member) => {
       let groupUpdate = [];
       groups.forEach((group) => {
