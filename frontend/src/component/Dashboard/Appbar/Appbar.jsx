@@ -42,9 +42,10 @@ function Appbar({ chatType }) {
       width: "calc(100vw - 50px)",
     },
   };
+  
   return (
     <MainContainer sx={!friendSideBarToggle ? friendSideBarCloseStyle : {}}>
-      {!window.innerWidth < '660px' && <ChosenOptionLabel />}
+      {!window.innerWidth < 660 && <ChosenOptionLabel />}
       {chatType === "GROUP" && <GroupDetailsDropdown />}
       <DropdownMenu />
     </MainContainer>
