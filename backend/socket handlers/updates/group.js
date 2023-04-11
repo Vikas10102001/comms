@@ -10,7 +10,6 @@ const updateGroup = async (
   deletedGroup
 ) => {
   const io = getServerInstance();
-  console.log("deleted group", deletedGroup);
   if (toSpecificSocket) {
     const groupUpdate = await Group.find({ members: { $in: [userId] } })
       .populate({
@@ -24,6 +23,7 @@ const updateGroup = async (
           select: "username email",
         },
       });
+    console.log(groupUpdate[0]);
     io.to(toSpecificSocket).emit("group-update", {
       groupUpdate,
       newGroup,
@@ -32,7 +32,7 @@ const updateGroup = async (
   }
 
   if (toGroupMembers) {
-    console.log(toGroupMembers);
+    console.log(toGroupMembers,"hey");
     const groups = await Group.find()
       .populate({ path: "admin", select: "username email" })
       .populate({
