@@ -18,7 +18,7 @@ const groupCreateHandler = async (socket, data) => {
   });
 
   if (newGroup) {
-    updateGroup(socket.user.id, null, members, newGroup, null);
+    updateGroup(null, null, members, newGroup, null);
   }
 };
 
