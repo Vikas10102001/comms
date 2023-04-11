@@ -8,6 +8,7 @@ import {
   deleteGroup,
   leaveGroup,
 } from "../../../realtimeCommunication/connectSocketServer";
+import { setChosenChatDetails } from "../../../store/actions/chatAction";
 
 function GroupDetailsDropdown({
   setGroupMembersModalIsOpen,
@@ -29,6 +30,8 @@ function GroupDetailsDropdown({
   };
   const handleLeaveGroup = () => {
     leaveGroup({ groupId: chosenChatDetails.groupId, userId: userDetail.id });
+    store.dispatch(setChosenChatDetails(null));
+    store.dispatch(setCurrentConversation(null));
   };
   const handleDeleteGroup = () => {
     deleteGroup({ groupId: chosenChatDetails.groupId });
