@@ -4,7 +4,10 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { connect } from "react-redux";
 import getActions from "../../../store/actions/groupAction";
-import { deleteGroup } from "../../../realtimeCommunication/connectSocketServer";
+import {
+  deleteGroup,
+  leaveGroup,
+} from "../../../realtimeCommunication/connectSocketServer";
 
 function GroupDetailsDropdown({
   setGroupMembersModalIsOpen,
@@ -24,7 +27,9 @@ function GroupDetailsDropdown({
     setGroupMembersModalIsOpen(true);
     setAnchorEl(null);
   };
-  const handleLeaveGroup = () => {};
+  const handleLeaveGroup = () => {
+    leaveGroup({ groupId: chosenChatDetails.groupId, userId: userDetail.id });
+  };
   const handleDeleteGroup = () => {
     deleteGroup({ groupId: chosenChatDetails.groupId });
   };

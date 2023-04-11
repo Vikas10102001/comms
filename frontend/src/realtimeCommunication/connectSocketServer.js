@@ -116,3 +116,6 @@ export const createGroup = (data) => {
 export const deleteGroup = (data) => {
   socket.emit("delete-group", data);
 };
+export const leaveGroup = (data) => {
+  socket.emit("leave-group", data);
+};
