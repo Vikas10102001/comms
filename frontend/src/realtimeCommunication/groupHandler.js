@@ -1,6 +1,5 @@
 import { openAlert } from "../store/actions/alertAction";
 import {
-  chatActions,
   chatTypes,
   setChosenChatDetails,
   setCurrentConversation,
@@ -52,18 +51,19 @@ export const groupUpdate = (data) => {
   store.dispatch(setGroups(groupUpdate));
   //If current group is open then the left user should be removed from group member list which is present in chosenChatDetails.members. we need to update that
   const currentGroup = groupUpdate.find((group) => {
-    return store.getState().chat.conversationId === group.conversation._id
-        
+    return store.getState().chat.conversationId === group.conversation._id;
   });
   if (currentGroup) {
+    console.log("here");
     const chosenChatDetails = store.getState().chat.chosenChatDetails;
     store.dispatch(
       setChosenChatDetails(
         {
           ...chosenChatDetails,
           members: currentGroup.conversation.participants,
+          thiss: "this",
         },
-        chatActions.GROUP
+        chatTypes.GROUP
       )
     );
   }
