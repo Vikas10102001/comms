@@ -8,7 +8,11 @@ import {
   deleteGroup,
   leaveGroup,
 } from "../../../realtimeCommunication/connectSocketServer";
-import { setChosenChatDetails } from "../../../store/actions/chatAction";
+import {
+  setChosenChatDetails,
+  setCurrentConversation,
+} from "../../../store/actions/chatAction";
+import store from "../../../store/store";
 
 function GroupDetailsDropdown({
   setGroupMembersModalIsOpen,
