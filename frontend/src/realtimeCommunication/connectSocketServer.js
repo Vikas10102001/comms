@@ -73,6 +73,11 @@ export const connectWithSocketServer = (userDetail) => {
   socket.on("group-update", (data) => {
     groupUpdate(data);
   });
+  socket.on("user-removed", (data) => {
+    store.dispatch(
+      openAlert(`You were removed from '${data.group.name}' group`)
+    );
+  });
   socket.on("room-participant-left", (data) => {
     closeConnection(data);
   });
