@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import List from "@mui/material/List";
 // import DialogActions from "@mui/material/DialogActions";
@@ -33,8 +33,8 @@ function GroupMembersModal({
       <Divider />
       <List sx={{ pt: 0 }}>
         {chosenChatDetails.members.map((member) => (
-          <>
-            <ListItem key={member._id}>
+          <Fragment key={member._id}>
+            <ListItem>
               <ListItemText primary={`${member.username} (${member.email})`} />
               {chosenChatDetails.admin._id === userDetail.id &&
               !(chosenChatDetails.admin._id === member._id) ? (
@@ -63,7 +63,7 @@ function GroupMembersModal({
               )}
             </ListItem>
             <Divider variant="middle" />
-          </>
+          </Fragment>
         ))}
       </List>
     </Dialog>
