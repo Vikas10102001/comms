@@ -22,7 +22,11 @@ const login = (userDetail, navigate) => {
   return async (dispatch) => {
     const response = await api.login(userDetail);
     if (response.error) {
-      dispatch(openAlert(response.er?.response?.data.error));
+      console.log(response.error);
+      const error = response.er?.response?.data.error
+        ? response.er?.response?.data.error
+        : "Something went wrong";
+      dispatch(openAlert(error));
     } else {
       const userDetail = {
         id: response.data.data._id,
@@ -40,7 +44,10 @@ const register = (userDetail, navigate) => {
   return async (dispatch) => {
     const response = await api.register(userDetail);
     if (response.error) {
-      dispatch(openAlert(response.er.response.data.error));
+      const error = response.er?.response?.data.error
+        ? response.er?.response?.data.error
+        : "Something went wrong";
+      dispatch(openAlert(error));
     } else {
       const userDetail = {
         id: response.data.data._id,
