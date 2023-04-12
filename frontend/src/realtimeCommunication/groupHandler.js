@@ -52,8 +52,8 @@ export const groupUpdate = (data) => {
   store.dispatch(setGroups(groupUpdate));
   //If current group is open then the left user should be removed from group member list which is present in chosenChatDetails.members. we need to update that
   const currentGroup = groupUpdate.find((group) => {
-    if (store.getState().chat.conversationId === group.conversation._id)
-      return group;
+    return store.getState().chat.conversationId === group.conversation._id
+        
   });
   if (currentGroup) {
     const chosenChatDetails = store.getState().chat.chosenChatDetails;
