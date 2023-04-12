@@ -14,7 +14,7 @@ const messageSchema = Mongoose.Schema({
   },
   variant: {
     type: String,
-    enum: ["CHAT", "USER_LEFT"],
+    enum: ["CHAT", "USER_LEFT", "USER_REMOVED"],
     default: "CHAT",
   },
 });
