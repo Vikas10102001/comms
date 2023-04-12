@@ -18,7 +18,7 @@ const groupCreateHandler = require("./socket handlers/groupCreateHandler");
 const groupMessageHandler = require("./socket handlers/groupMessageHandler");
 const sendCurrentConversation = require("./socket handlers/sendCurrentConversation");
 const deleteGroupHandler = require("./socket handlers/groupDeleteHandler");
-const leaveGroup = require("./socket handlers/leaveGroupHandler");
+const leaveKickGroupHandler = require("./socket handlers/leaveKickGroupHandler");
 const registerSocketServer = (server) => {
   const io = require("socket.io")(server, {
     cors: {
@@ -77,7 +77,18 @@ const registerSocketServer = (server) => {
       deleteGroupHandler(socket, data);
     });
     socket.on("leave-group", (data) => {
-      leaveGroup(data);
+      const { groupId, userId } = data;
+      leaveKickGroupHandler(
+        { groupId: groupId, userId: userId },
+        "USER_LEFT"
+      );
+    });
+    socket.on("kick-user", (data) => {
+      const { memberId, groupId } = data;
+      leaveKickGroupHandler(
+        { groupId: groupId, userId: memberId },
+        "USER_REMOVED"
+      );
     });
     socket.on("disconnect", () => {
       disconnectHandler(socket);
