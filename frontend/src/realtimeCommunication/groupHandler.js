@@ -57,7 +57,6 @@ export const groupUpdate = (data) => {
   });
   if (currentGroup) {
     const chosenChatDetails = store.getState().chat.chosenChatDetails;
-    console.log(chosenChatDetails);
     store.dispatch(
       setChosenChatDetails(
         {
@@ -68,5 +67,4 @@ export const groupUpdate = (data) => {
       )
     );
   }
-  console.log(currentGroup);
 };

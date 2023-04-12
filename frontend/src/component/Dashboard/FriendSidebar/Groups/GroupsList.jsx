@@ -12,7 +12,6 @@ function GroupsList({ groups }) {
   return (
     <MainContainer>
       {groups.map((g) => {
-        console.log(g)
         return (
           <GroupsListItem
             key={g._id}

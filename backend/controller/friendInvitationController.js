@@ -23,7 +23,6 @@ exports.invitationHandler = catchAsync(async (req, res, next) => {
   }
 
   if (targetUser.friends.includes(req.user.id)) {
-    console.log(targetUser);
     return res.status(409).json({
       status: "error",
       error: "User already added.Check friendlist",

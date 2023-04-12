@@ -36,7 +36,6 @@ const registerSocketServer = (server) => {
     io.emit("online-users", { onlineUsers });
   };
   io.on("connect", (socket) => {
-    console.log("connected succesfully", socket.id);
     newConnectionHandler(socket, io);
     emitOnlineUsers();
     socket.on("direct-message", (data) => {

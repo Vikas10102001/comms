@@ -17,7 +17,6 @@ function Login({ login }) {
     const validatePassword = password.length > 6 && password.length < 12;
     const validateEmail =
       /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email);
-    // console.log(validateEmail, validatePassword);
     if (!validateEmail && validatePassword) {
       setIsFormInvalidText("Enter a valid email");
     }

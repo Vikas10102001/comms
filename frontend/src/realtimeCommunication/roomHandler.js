@@ -75,7 +75,6 @@ export const leaveRoomHandler = () => {
     const stream = localStream;
     store.dispatch(setLocalStream(null));
     stream.getTracks().forEach((track) => {
-      console.log(track)
       track.stop();
     });
   }

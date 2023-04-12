@@ -46,7 +46,6 @@ const sendFriendInvitation = (data, closeDialogHandler) => {
     if (response.error) {
       dispatch(openAlert(response.er.response.data.error));
     } else {
-      console.log(response);
       dispatch(openAlert("Invitation has been sent"));
       closeDialogHandler();
     }
@@ -59,7 +58,6 @@ const acceptFriendInvitation = (data) => {
     if (response.error) {
       dispatch(openAlert(response.er.response.data.error));
     } else {
-      console.log(response);
       dispatch(openAlert("Invitation has been accepted successfully"));
     }
   };
@@ -70,7 +68,6 @@ const rejectFriendInvitation = (data) => {
     if (response.error) {
       dispatch(openAlert(response.er.response.data.error));
     } else {
-      console.log(response);
       dispatch(openAlert("Invitation has been rejected successfully"));
     }
   };
