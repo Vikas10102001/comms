@@ -9,20 +9,15 @@ const Wrapper = styled("div")({
   flex: 1,
 });
 
-function Groups({ groupMembersModalIsOpen }) {
+export default function Groups() {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
     <Wrapper>
       <FriendTitle title="Groups" isOpen={isOpen} setIsOpen={setIsOpen} />
       {isOpen && <GroupsList />}
-      {groupMembersModalIsOpen && <GroupMembersModal />}
     </Wrapper>
   );
 }
 
-const mapStatesToProps = ({ group }) => {
-  return group;
-};
 
-export default connect(mapStatesToProps)(Groups);

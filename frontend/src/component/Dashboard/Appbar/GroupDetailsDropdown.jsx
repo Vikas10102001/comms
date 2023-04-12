@@ -13,11 +13,13 @@ import {
   setCurrentConversation,
 } from "../../../store/actions/chatAction";
 import store from "../../../store/store";
+import GroupMembersModal from "../FriendSidebar/Groups/GroupMembersModal";
 
 function GroupDetailsDropdown({
   setGroupMembersModalIsOpen,
   chosenChatDetails,
   userDetail,
+  groupMembersModalIsOpen,
 }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -67,12 +69,13 @@ function GroupDetailsDropdown({
           <MenuItem onClick={handleLeaveGroup}>Leave Group</MenuItem>
         )}
       </Menu>
+      {groupMembersModalIsOpen && <GroupMembersModal />}
     </div>
   );
 }
 
-const mapStatesToProps = ({ chat, auth }) => {
-  return { ...chat, ...auth };
+const mapStatesToProps = ({ chat, auth, group }) => {
+  return { ...chat, ...auth, ...group };
 };
 const mapActionsToProps = (dispatch) => {
   return {
