@@ -2,14 +2,15 @@ const Message = require("../model/Message");
 const Conversation = require("../model/Conversation");
 const { directChatHistoryHandler } = require("./directChatHistoryHandler");
 const { updateChats } = require("./updates/chat");
+const sendCurrentConversation = require("./sendCurrentConversation");
+const { getActiveConnections } = require("../serverStore");
 const directMessageHandler = async (socket, data) => {
   const userId = socket.user.id;
   const { recieverId, content } = data;
 
-
   const message = await Message.create({
     author: userId,
-   
+
     date: new Date(Date.now()),
     content: content,
   });
