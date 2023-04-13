@@ -5,10 +5,7 @@ export const updateChatHistory = (data) => {
   const { participants, messages, type, conversationId } = data;
   const chatType = store.getState().chat.chatType;
   console.log(participants);
-  // if (store.getState().chat.chatType === "DIRECT") {
-  //   const id = store.getState().chat.chosenChatDetails.id;
-  //   getCurrentConversation({ recieverId: id });
-  // }
+  
   let chosenCoversationPartipants = [];
   let checkConversation;
   if (chatType === type) {
