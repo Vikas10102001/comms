@@ -1,7 +1,6 @@
 import { React, useState } from "react";
 import { styled } from "@mui/system";
 import {
-  getCurrentConversation,
   handleDirectMessage,
   handleGroupMessage,
 } from "../../../realtimeCommunication/connectSocketServer";

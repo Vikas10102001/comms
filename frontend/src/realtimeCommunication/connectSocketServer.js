@@ -13,7 +13,6 @@ import {
   handleSignalingData,
   prepareNewPeerConnection,
 } from "./webRTCHandler";
-import { setGroups } from "../store/actions/groupAction";
 import { setCurrentConversation } from "../store/actions/chatAction";
 import { openAlert } from "../store/actions/alertAction";
 import { groupUpdate } from "./groupHandler";

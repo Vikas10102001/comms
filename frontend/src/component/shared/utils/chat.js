@@ -1,6 +1,5 @@
 import store from "../../../store/store";
 import { setMessages } from "../../../store/actions/chatAction";
-import { getCurrentConversation } from "../../../realtimeCommunication/connectSocketServer";
 
 export const updateChatHistory = (data) => {
   const { participants, messages, type, conversationId } = data;
