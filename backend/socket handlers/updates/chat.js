@@ -17,7 +17,9 @@ const updateChats = async (conversationId, specificSocket) => {
     if (specificSocket) {
       io.to(specificSocket).emit("direct-chat-history", {
         messages: conversation.messages,
-        conversationId: conversation._id,
+        participants: conversation.participants,
+        type: conversation.type,
+        conversationId,
       });
     } else {
       conversation.participants.forEach((user) => {
@@ -26,7 +28,9 @@ const updateChats = async (conversationId, specificSocket) => {
         activeConnections.forEach((socketId) => {
           io.to(socketId).emit("direct-chat-history", {
             messages: conversation.messages,
-            conversationId: conversation._id,
+            participants: conversation.participants,
+            type: conversation.type,
+            conversationId,
           });
         });
       });
