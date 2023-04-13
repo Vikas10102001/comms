@@ -91,9 +91,7 @@ export const handleGroupMessage = (data) => {
 export const getDirectChatHistory = (data) => {
   socket.emit("direct-chat-history", data);
 };
-export const getCurrentConversation = (data) => {
-  socket.emit("current-conversation", data);
-};
+
 export const getGroupChatHistory = (data) => {
   socket.emit("group-chat-history", data);
 };
