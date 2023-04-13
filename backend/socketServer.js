@@ -47,9 +47,6 @@ const registerSocketServer = (server) => {
     socket.on("group-chat-history", (data) => {
       groupChatHistoryHandler(socket, data);
     });
-    socket.on("current-conversation", (data) => {
-      sendCurrentConversation(socket, data);
-    });
     socket.on("create-room", () => {
       roomCreateHandler(socket);
     });
