@@ -3,13 +3,11 @@ import { Typography, Button, Avatar } from "@mui/material";
 import OnlineIndicator from "./OnlineIndicator";
 import { getActions, chatTypes } from "../../../../store/actions/chatAction";
 import { connect } from "react-redux";
-import { getCurrentConversation } from "../../../../realtimeCommunication/connectSocketServer";
 
 function FriendsListItem({ username, isOnline, id, setChosenChatDetails }) {
   const avatar = username[0] + username[1] + username[2];
 
   const handleChooseActiveConversation = () => {
-    getCurrentConversation({ recieverId: id });
     setChosenChatDetails({ id: id, username: username }, chatTypes.DIRECT);
   };
   return (
