@@ -16,7 +16,6 @@ const roomInitConnectionHandler = require("./socket handlers/roomInitConnectionH
 const roomSignalDataHandler = require("./socket handlers/roomSignalDataHandler");
 const groupCreateHandler = require("./socket handlers/groupCreateHandler");
 const groupMessageHandler = require("./socket handlers/groupMessageHandler");
-const sendCurrentConversation = require("./socket handlers/sendCurrentConversation");
 const deleteGroupHandler = require("./socket handlers/groupDeleteHandler");
 const leaveKickGroupHandler = require("./socket handlers/leaveKickGroupHandler");
 const registerSocketServer = (server) => {
