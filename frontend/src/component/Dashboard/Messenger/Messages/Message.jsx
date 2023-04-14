@@ -47,7 +47,7 @@ export default function Message({ message, sameDay, sameAuthor }) {
       </SameAuthorTextContainer>
     );
   }
-  if (message.variant === "USER_LEFT" || message.variant == "USER_REMOVED") {
+  if (message.variant === "USER_LEFT" || message.variant === "USER_REMOVED") {
     return (
       <LeftRemovedContainer>
         {message.content}
