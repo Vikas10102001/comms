@@ -21,12 +21,17 @@ const AvatarContainer = styled("div")({
 });
 
 const MessageContent = styled("div")({
-  fontSize:14,
+  fontSize: 14,
   color: "#DCDDDE",
 });
 const MessageContainer = styled("div")({
   display: "flex",
   flexDirection: "column",
+});
+const LeftRemovedContainer = styled("div")({
+  width: "100%",
+  color: "red",
+  marginTop: "10px",
 });
 export default function Message({ message, sameDay, sameAuthor }) {
   const username = message.author.username;
@@ -35,8 +40,20 @@ export default function Message({ message, sameDay, sameAuthor }) {
   if (sameDay && sameAuthor) {
     return (
       <SameAuthorTextContainer>
-        <span style={{ marginLeft: "70px",fontSize:14 }}>{message.content}</span>
+        <span style={{ marginLeft: "70px", fontSize: 14 }}>
+          {message.content}
+        </span>
       </SameAuthorTextContainer>
+    );
+  }
+  if (message.variant === "USER_LEFT" || message.variant == "USER_REMOVED") {
+    return (
+      <LeftRemovedContainer>
+        {message.content}
+        <span style={{ fontSize: "12px", color: "#72767D", marginLeft: "5px" }}>
+          {message.date.split("T")[0]}
+        </span>
+      </LeftRemovedContainer>
     );
   }
   return (
