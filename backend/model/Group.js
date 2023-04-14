@@ -8,6 +8,7 @@ const groupSchema = Mongoose.Schema({
   name: {
     type: String,
     required: [true, "Group must have a name"],
+    min: [3, "Group name must have 3 letters"],
   },
   admin: {
     type: Mongoose.Schema.ObjectId,
