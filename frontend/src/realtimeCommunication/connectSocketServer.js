@@ -13,7 +13,10 @@ import {
   handleSignalingData,
   prepareNewPeerConnection,
 } from "./webRTCHandler";
-import { setCurrentConversation } from "../store/actions/chatAction";
+import {
+  setChosenChatDetails,
+  setCurrentConversation,
+} from "../store/actions/chatAction";
 import { openAlert } from "../store/actions/alertAction";
 import { groupUpdate } from "./groupHandler";
 
@@ -73,6 +76,9 @@ export const connectWithSocketServer = (userDetail) => {
     groupUpdate(data);
   });
   socket.on("user-removed", (data) => {
+    if (data.group.conversation === store.getState().chat.conversationId) {
+      store.dispatch(setChosenChatDetails(null, null));
+    }
     store.dispatch(
       openAlert(`You were removed from '${data.group.name}' group`)
     );
