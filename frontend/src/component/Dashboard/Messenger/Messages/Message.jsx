@@ -29,9 +29,10 @@ const MessageContainer = styled("div")({
   flexDirection: "column",
 });
 const LeftRemovedContainer = styled("div")({
-  width: "100%",
+  width: "70%",
   color: "red",
   marginTop: "10px",
+  marginLeft: "10px",
 });
 export default function Message({ message, sameDay, sameAuthor }) {
   const username = message.author.username;
