@@ -29,12 +29,14 @@ const leaveKickGroupHandler = async ({ groupId, userId }, messageVariant) => {
       io.to(socket).emit("user-removed", { group });
     });
   }
-  await Message.create({
+  const newMessage = await Message.create({
     author: userId,
     date: new Date(Date.now()),
     content: content,
     variant: messageVariant,
   });
+  conversation.messages.push(newMessage._id);
+  await conversation.save();
   let members = [];
   conversation.participants.forEach((participant) => {
     members.push(participant.toString());
