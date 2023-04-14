@@ -4,7 +4,6 @@ import { setMessages } from "../../../store/actions/chatAction";
 export const updateChatHistory = (data) => {
   const { participants, messages, type, conversationId } = data;
   const chatType = store.getState().chat.chatType;
-  console.log(participants);
   
   let chosenCoversationPartipants = [];
   let checkConversation;

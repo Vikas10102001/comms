@@ -43,7 +43,7 @@ export const groupUpdate = (data) => {
       content = `'${deletedGroup.name}' group deleted`;
     }
     store.dispatch(openAlert(content, severity));
-    store.dispatch(setChosenChatDetails(chosenChatDetails));
+    store.dispatch(setChosenChatDetails(chosenChatDetails, null));
     store.dispatch(setCurrentConversation(currentConversationId));
   } else {
   }
@@ -54,14 +54,12 @@ export const groupUpdate = (data) => {
     return store.getState().chat.conversationId === group.conversation._id;
   });
   if (currentGroup) {
-    console.log("here");
     const chosenChatDetails = store.getState().chat.chosenChatDetails;
     store.dispatch(
       setChosenChatDetails(
         {
           ...chosenChatDetails,
           members: currentGroup.conversation.participants,
-          thiss: "this",
         },
         chatTypes.GROUP
       )
