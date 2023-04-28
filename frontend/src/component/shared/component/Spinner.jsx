@@ -1,6 +1,6 @@
 import { styled } from "@mui/system";
 import React from "react";
-import { PacmanLoader } from "react-spinners";
+import { FadeLoader } from "react-spinners";
 const SpinnerOverlay = styled("div")({
   display: "flex",
   position: "absolute",
@@ -14,7 +14,7 @@ const SpinnerOverlay = styled("div")({
 export default function Spinner() {
   return (
     <SpinnerOverlay>
-      <PacmanLoader color="#5865F2" />
+      <FadeLoader color="#5865F2" />
     </SpinnerOverlay>
   );
 }
