@@ -7,6 +7,7 @@ import chatReducer from "./reducers/chatReducer";
 import roomReducer from "./reducers/roomReducer";
 import groupReducer from "./reducers/groupReducer";
 import toggleReducer from "./reducers/toggleReducer";
+import spinnerReducer from "./reducers/spinnerReducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   room: roomReducer,
   group: groupReducer,
   toggle: toggleReducer,
+  spinner: spinnerReducer,
 });
 const store = configureStore({
   reducer: rootReducer,
