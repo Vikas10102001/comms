@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import FriendTitle from "../FriendTitle";
 import { styled } from "@mui/system";
 import GroupsList from "./GroupsList";
-import GroupMembersModal from "./GroupMembersModal";
-import { connect } from "react-redux";
 
 const Wrapper = styled("div")({
   flex: 1,
