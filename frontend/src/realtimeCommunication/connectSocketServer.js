@@ -19,6 +19,7 @@ import {
 } from "../store/actions/chatAction";
 import { openAlert } from "../store/actions/alertAction";
 import { groupUpdate } from "./groupHandler";
+import { setIsLoading } from "../store/actions/spinnerAction";
 
 let socket = null;
 export const connectWithSocketServer = (userDetail) => {
@@ -29,7 +30,7 @@ export const connectWithSocketServer = (userDetail) => {
     },
   });
   socket.on("connect", () => {
-    // console.log(socket.id)
+    store.dispatch(setIsLoading(false));
   });
   socket.on("friends-invitations", (data) => {
     const { pendingFriendsInvitations } = data;
