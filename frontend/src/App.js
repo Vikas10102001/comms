@@ -20,7 +20,6 @@ function App() {
   const isLoading = useSelector((state) => {
     return state.spinner.isLoading;
   });
-  console.log(isLoading);
   return (
     <>
       <Routes>
