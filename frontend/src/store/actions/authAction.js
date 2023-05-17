@@ -23,6 +23,7 @@ const login = (userDetail, navigate) => {
   return async (dispatch) => {
     dispatch(setIsLoading(true));
     const response = await api.login(userDetail);
+    dispatch(setIsLoading(false));
     if (response.error) {
       console.log(response.error);
       const error = response.er?.response?.data.error
@@ -46,6 +47,7 @@ const register = (userDetail, navigate) => {
   return async (dispatch) => {
     dispatch(setIsLoading(true));
     const response = await api.register(userDetail);
+    dispatch(setIsLoading(false));
     if (response.error) {
       const error = response.er?.response?.data.error
         ? response.er?.response?.data.error

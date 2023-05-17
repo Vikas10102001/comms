@@ -30,7 +30,7 @@ export const connectWithSocketServer = (userDetail) => {
     },
   });
   socket.on("connect", () => {
-    store.dispatch(setIsLoading(false));
+    console.log("connected to socket server");
   });
   socket.on("friends-invitations", (data) => {
     const { pendingFriendsInvitations } = data;
